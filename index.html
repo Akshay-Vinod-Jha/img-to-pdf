@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="call()"></button>
+    <script>
+        function call(){
+if ('speechSynthesis' in window) {
+  var synth = window.speechSynthesis;
+  var utterance = new SpeechSynthesisUtterance();
+  utterance.text = 'Hello, this is a test.';
+  utterance.rate = 1; // Speed of speech, 1 is normal speed
+  utterance.pitch = 1; // Pitch, 1 is normal pitch
+  synth.speak(utterance);
+} else {
+  console.log('Speech synthesis not supported');
+}
+}
+    </script>
+</body>
+</html>

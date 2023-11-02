@@ -316,7 +316,7 @@
             // console.log(event.srcElement.files.length);
             for(let i=0;i<event.srcElement.files.length;i++){
                 if(event.srcElement.files[i].type.includes("image")){
-                    total_images_url.push(event.srcElement.files[i].name);
+                    total_images_url.push(URL.createObjectURL(event.srcElement.files[i]));
                     console.log(event.srcElement.files[i]);
                 }
             }

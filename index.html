@@ -4,22 +4,384 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bb506b8b05.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #part1,#part2,#part3,#part4{
+            position: absolute;
+            width: 100%;
+            /* height: 100%; */
+        }
+        #part1{
+            background-color:white;
+            z-index: 2;
+            height: 100%;
+        }
+        #part2{
+            background-color:white;
+            z-index: 1;
+        }
+        #part3,#part4{
+            height: 100%;
+            background: whitesmoke;
+            z-index: 1;
+        }
+        #part1main,#part2main{
+            width: 100%;
+            height: 100%;
+        }
+        #part1main{
+            background: whitesmoke;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2%;
+        }
+        #droparea{
+            width: 90%;
+            height: 50%;
+            border: 5px dashed black;
+            border-radius: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: lightpink;
+        }
+        #text_dragdrop{
+            font-family: Agbalumo;
+            font-size: clamp(0.5rem,3vw,1.5rem);
+            white-space: wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #circlepart{
+            background: rgba(255,255,255,0.6);
+            height: 90%;
+            aspect-ratio: 1/1;
+            border: 5px dashed black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('download-removebg-preview.png'),pointer;
+        }
+        #part2main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5%;
+        }
+        #elements_inside{
+            width: 90%;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            gap: 5%;
+            flex-wrap: wrap;
+            border: 5px dashed black;
+            padding: 2%;
+            border-radius: 2rem;
+            background:lightskyblue;
+        }
+        #part2main,#main_part5{
+            padding: 2rem;
+        }
+        #elements_inside .main_elements{
+            border-radius: 1.5rem;
+            min-width: 50px;
+            width: 10%;
+            max-width: 100px;
+            aspect-ratio: 1/2;
+            outline: 2px dashed black;
+            outline-offset: 4px;
+            background: rgba(255,255,255,0.3);
+            margin:3% 0%  2% 0%;
+            /* padding:1rem; */
+        }
+        #button_pdf{
+            width: 50%;
+            height: 10%;
+            background: red;
+            border: none;
+            outline: none;
+            box-shadow: 0px 0px 10px red;
+            margin-top: 4%;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Agbalumo;
+            color: white;
+            text-shadow: 0px 0px 10px whitesmoke;
+            font-size: clamp(1rem,2vw,2rem);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        #loader{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2.5%;
+        }
+        #circle_load{
+            max-width: 250px;
+            border-radius: 50%;
+            width: 25%;
+            aspect-ratio: 1/1;
+            border-top: clamp(2rem,3vw,3.5rem) solid rgb(239, 6, 6);
+            border-left: clamp(2rem,3vw,3.5rem) solid black;
+            border-right: clamp(2rem,3vw,3.5rem) solid black;
+            border-bottom: clamp(2rem,3vw,3.5rem) solid black;
+            box-shadow: 0px 0px 20px 5px rgb(62, 61, 61) inset, 0px 0px 20px 5px rgb(61, 60, 60);
+            animation: rotate 1s linear infinite;
+            transition: all 0.2s linear;
+        }
+        @keyframes rotate {
+            0%{
+                rotate: 0deg;
+            }
+            100%{
+                rotate: 360deg;
+            }
+        }
+        #congrats_div{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #congrats{
+            width:45%;
+            height: 15%;
+            background: red;
+            border: none;
+            outline: none;
+            box-shadow: 0px 0px 20px 10px red;
+            font-family: Agbalumo;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            border-radius: 1rem;
+            font-size: clamp(0.5rem,2.5vw,2.5rem);
+        }
+        #text{
+            font-family: Agbalumo;
+            color: black;
+            text-shadow: 0px 0px 10px gray;
+            font-size: clamp(1.5rem,3vw,2.5rem);
+        }
+        #error{
+            font-size: clamp(1.5rem,3vw,2.5rem);
+            font-family: Agbalumo;
+            color: black;
+            text-shadow: 0px 0px 10px gray;
+        }
+        #upload{
+            width: 90%;
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #uf{
+            display: none;
+        }
+        #uploadf{
+            max-width: 400px;
+            width: 50%;
+            height: 70%;
+            background: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+            font-family:Agbalumo;
+            font-size: clamp(1rem,3vw,2rem);
+            border: clamp(3px,0.2vw,5px) solid black;
+            box-shadow: 10px 10px 1px 1px black;
+        }
+        i{
+            padding: 0.1%;
+        }
+    </style>
 </head>
-<body>
-    <button onclick="call()"></button>
+<body id="is_body">
+    <div id="part1">
+        <div id="part1main">
+            <div id="droparea">
+                <div id="circlepart">
+                    <p id="text_dragdrop">DROP YOUR IMAGES HERE<i class="fa-regular fa-image fa-shake"></i></p>
+                </div>
+            </div>
+            <div id="upload">
+                <label for="uf" id="uploadf">UPLOAD FILES<i class="fa-solid fa-cloud-arrow-up"></i></label>
+                <input type="file" name="uf" id="uf" multiple>
+            </div>
+            <h1 id="error"></h1>
+        </div>
+    </div>
+    <div id="part2">
+        <div id="part2main">
+            <div id="elements_inside">
+            </div>
+            <div id="button_pdf">Convert To PDF</div>
+        </div>
+    </div>
+    <div id="part3">
+        <div id="loader">
+            <div id="circle_load"></div>
+            <div id="text">Converting...</div>
+        </div>
+    </div>
+    <div id="part4">
+        <div id="congrats_div">
+            <div id="congrats">IMG to PDF Converted Successfully..</div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script>
-        function call(){
-if ('speechSynthesis' in window) {
-  var synth = window.speechSynthesis;
-  var utterance = new SpeechSynthesisUtterance();
-  utterance.text = 'Hello, this is a test.';
-  utterance.rate = 1; // Speed of speech, 1 is normal speed
-  utterance.pitch = 1; // Pitch, 1 is normal pitch
-  synth.speak(utterance);
-} else {
-  console.log('Speech synthesis not supported');
-}
-}
-    </script>
+        var pdf_convertor=new jsPDF();
+        var total_images_url=[];
+        var elementsinside=document.getElementById("elements_inside");
+        var part1=document.getElementById("part1");
+        var part2=document.getElementById("part2");
+        var part3=document.getElementById("part3");
+        var part4=document.getElementById("part4");
+        var container=document.getElementById("circlepart");
+        var array=[part1,part2,part3,part4]
+        //drag and drop
+        container.addEventListener("dragover",function(event){
+            event.preventDefault();
+        })
+        container.addEventListener("drop",function(event){
+            event.preventDefault();
+            for(let i=0;i<event.dataTransfer.files.length;i++){
+                if(event.dataTransfer.files[i].type.includes("image")){
+                    total_images_url.push(URL.createObjectURL(event.dataTransfer.files[i]));
+                }
+            }
+            if(total_images_url.length==0){
+                document.getElementById("error").innerText="Nothing Selected Of type IMAGE";
+                document.getElementById("part1main").style.background="rgb(240, 40, 40)";
+            }
+            else{
+                document.getElementById("error").innerText="";
+                document.getElementById("part1main").style.background="whitesmoke";
+                create_div();
+                set_index(part2);
+            }
+        })
+        //logic for copy and paste
+        var clipboard_data;
+        container.addEventListener("paste",function(event){
+            clipboard_data=event.clipboardData.items;
+            for(let i=0;i<clipboard_data.length;i++){
+                if(clipboard_data[i].type.includes("image")){
+                    total_images_url.push(URL.createObjectURL(clipboard_data[i].getAsFile()));
+                }
+            }
+            if(total_images_url.length==0){
+                document.getElementById("error").innerText="Nothing Selected Of type IMAGE";
+                document.getElementById("part1main").style.background="rgb(240, 40, 40)";
+            }
+            else{
+                document.getElementById("error").innerText="";
+                document.getElementById("part1main").style.background="whitesmoke";
+                create_div();
+                set_index(part2);  
+            }
+        })
+        //select by input type
+        document.getElementById("uf").addEventListener("change",function(event){
+            // console.log(event.srcElement.files.length);
+            for(let i=0;i<event.srcElement.files.length;i++){
+                if(event.srcElement.files[i].type.includes("image")){
+                    total_images_url.push(event.srcElement.files[i].name);
+                }
+            }
+            if(total_images_url.length==0){
+                document.getElementById("error").innerText="Nothing Selected Of type IMAGE";
+                document.getElementById("part1main").style.background="rgb(240, 40, 40)";
+            }
+            else{
+                console.log(total_images_url.length);
+                document.getElementById("error").innerText="";
+                document.getElementById("part1main").style.background="whitesmoke";
+                create_div();
+                set_index(part2)
+            }
+        })
+        //common among all
+        function set_index(received){
+            for(let i=0;i<array.length;i++){
+                if(array[i]==received){
+                    array[i].style.zIndex="2";
+                    array[i].style.display="block";
+                }
+                else{
+                    array[i].style.zIndex="1";
+                    array[i].style.display="none";
+                }
+            }
+        }
+        document.getElementById("button_pdf").addEventListener("click",function(){
+            const p1=new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve("1");
+                },1000);
+            })
+            p1.then(data=>{
+                show_success();
+            })
+            set_index(part3);
+        })
+        function show_success(){
+            set_index(part4);
+            let img_ele;
+            for(let i=0;i<total_images_url.length;i++){
+                      img_ele=document.createElement('img');
+                      img_ele.src=total_images_url[i];
+                      pdf_convertor.addImage(img_ele,(pdf_convertor.internal.pageSize.getWidth()/2)/4,(pdf_convertor.internal.pageSize.getHeight()/2)/4,pdf_convertor.internal.pageSize.getWidth()/1.5,pdf_convertor.internal.pageSize.getHeight()/1.5);
+                      if(i==(total_images_url.length-1)){}
+                      else{
+                        pdf_convertor.addPage();
+                      }
+            }
+            pdf_convertor.save("akshay"+Math.floor(Math.random()*10000)+".pdf");
+        }
+        function create_div(){
+            let div_is;
+            for(let i=0;i<total_images_url.length;i++){
+                div_is=document.createElement('div');
+                div_is.setAttribute('class',"main_elements");
+                div_is.style.background=`url(${total_images_url[i]})`;
+                div_is.style.backgroundPosition="center";
+                div_is.style.backgroundSize="auto 100%";
+                div_is.style.objectFit="contain";
+                elementsinside.appendChild(div_is);
+            }
+        }
+        </script>
 </body>
 </html>

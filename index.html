@@ -46,7 +46,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            gap: 2%;
+            gap: 4%;
         }
         #droparea{
             width: 90%;
@@ -61,6 +61,7 @@
         #text_dragdrop{
             font-family: Agbalumo;
             font-size: clamp(0.5rem,3vw,1.5rem);
+            white-space: wrap;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,7 +69,7 @@
         }
         #circlepart{
             background: rgba(255,255,255,0.6);
-            height: 95%;
+            height: 90%;
             aspect-ratio: 1/1;
             border: 5px dashed black;
             border-radius: 50%;
@@ -100,7 +101,7 @@
             padding: 2rem;
         }
         #elements_inside .main_elements{
-            border-radius: 1.5rem;
+            border-radius: clamp(0.5rem,2vw,1.5rem);
             min-width: 50px;
             width: 10%;
             max-width: 100px;
@@ -163,7 +164,7 @@
         }
         #congrats_div{
             width: 100%;
-            height: 100%;
+            height: 70%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -216,21 +217,154 @@
             align-items: center;
             border-radius: 1rem;
             font-family:Agbalumo;
-            font-size: clamp(1rem,3vw,1.5rem);
+            font-size: clamp(1rem,3vw,2rem);
             border: clamp(3px,0.2vw,5px) solid black;
             box-shadow: 10px 10px 1px 1px black;
         }
         i{
             padding: 0.1%;
+            margin-left: 2%;
+        }
+        .main_elements{
+            position: relative;
+        }
+        .cross:hover{
+            box-shadow: 0px 0px 5px 2px red;
+            background: red;
+            cursor: pointer;
+        }
+        .cross{
+            transition: all 0.1s linear;
+            position: absolute;
+            width: 35%;
+            aspect-ratio: 1/1;
+            background: blue;
+            border-radius: 50%;
+            top: -7%;
+            left: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(0.2rem,2vw,1.5rem);
+            box-shadow: 0px 0px 5px 2px blue;
+        }
+        #display_topic{
+            max-width: 900px;
+            width: 90%;
+            height: 10%;
+            /* background: lightpink; */
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+        #disimg,#dispdf{
+            margin: 2%;
+            width: 20%;
+            height: 90%;
+            background-color: rgb(247, 3, 3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem,2vw,2.5rem);
+            font-family:Agbalumo;
+            border-radius: clamp(1rem,2vw,1.2rem);
+            text-shadow: 0px 0px 10px whitesmoke;
+            box-shadow: 0px 0px 10px 5px red inset, 0px 0px 10px 5px red;
+        }
+        #carrow{
+            margin: 2%;
+            height: 90%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: orange;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 5px orange inset,0px 0px 10px 5px orange;
+            font-size: clamp(1.2rem,2vw,2.5rem);
+            font-family:Agbalumo;
+            text-shadow: 0px 0px 10px whitesmoke;
+        }
+        #goback,#back2,#back4{
+            width: 90%;
+            height: 10%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            display: none;
+        }
+        #back,#back_2,#back_4{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            max-width: 200px;
+            height: 90%;
+            background: red;
+            border-radius: clamp(0.2rem,2vw,0.5rem);
+            box-shadow: 0px 0px 10px 5px red inset, 0px 0px 10px 5px red;
+            text-shadow: 0px 0px 10px whitesmoke;
+            font-size: clamp(1.2rem,2vw,2.5rem);
+            font-family:Agbalumo;
+        }
+        #back2{
+            margin:clamp(1rem,2vw,2rem);
+            display: block !important;
+        }
+        #back4{
+            display: block !important;
+            margin: 4%;
+        }
+        #part4{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #addmore{
+            border-radius: clamp(0.5rem,2vw,1.5rem);
+            min-width: 50px;
+            width: 10%;
+            max-width: 100px;
+            aspect-ratio: 1/2;
+            margin:3% 0%  2% 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #more{
+            outline: 2px dashed black;
+            outline-offset: 2px;
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background-color: rgb(240, 152, 152);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #idiff{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(2rem,5vw,4.5rem);
         }
     </style>
 </head>
 <body id="is_body">
     <div id="part1">
         <div id="part1main">
+            <div id="display_topic">
+                <div id="disimg">IMG<i class="fa-solid fa-image fa-bounce" style="color: #121212;"></i></div>
+                <div id="carrow"><i class="fa-solid fa-arrow-right-long" style="color: #050505;"></i></div>
+                <div id="dispdf">PDF<i class="fa-solid fa-file-pdf fa-bounce" style="color: #000000;"></i></div>
+            </div>
+            <div id="goback">
+                <div id="back">BACK<i class="fa-solid fa-arrow-rotate-left fa-shake" style="color: #000000;"></i></div>
+            </div>
             <div id="droparea">
                 <div id="circlepart">
-                    <p id="text_dragdrop">DROP OR PASTE HERE<i class="fa-regular fa-image fa-shake"></i></p>
+                    <p id="text_dragdrop">DROP YOUR IMAGES HERE<i class="fa-regular fa-image fa-shake"></i></p>
                 </div>
             </div>
             <div id="upload">
@@ -242,7 +376,11 @@
     </div>
     <div id="part2">
         <div id="part2main">
+            <div id="back2">
+                <div id="back_2">BACK<i class="fa-solid fa-arrow-rotate-left fa-shake" style="color: #000000;"></i></div>
+            </div>
             <div id="elements_inside">
+                
             </div>
             <div id="button_pdf">Convert To PDF</div>
         </div>
@@ -254,14 +392,19 @@
         </div>
     </div>
     <div id="part4">
+        <div id="back4">
+            <div id="back_4">BACK<i class="fa-solid fa-arrow-rotate-left fa-shake" style="color: #000000;"></i></div>
+        </div>
         <div id="congrats_div">
             <div id="congrats">IMG to PDF Converted Successfully..</div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script>
+        var change=true;
         var pdf_convertor=new jsPDF();
         var total_images_url=[];
+        var cross_array;
         var elementsinside=document.getElementById("elements_inside");
         var part1=document.getElementById("part1");
         var part2=document.getElementById("part2");
@@ -274,6 +417,10 @@
             event.preventDefault();
         })
         container.addEventListener("drop",function(event){
+            if(change){
+                console.log("change to blank");
+                total_images_url=[];
+            }
             event.preventDefault();
             for(let i=0;i<event.dataTransfer.files.length;i++){
                 if(event.dataTransfer.files[i].type.includes("image")){
@@ -295,6 +442,10 @@
         var clipboard_data;
         container.addEventListener("paste",function(event){
             clipboard_data=event.clipboardData.items;
+            if(change){
+                console.log("change to blank");
+                total_images_url=[];
+            }
             for(let i=0;i<clipboard_data.length;i++){
                 if(clipboard_data[i].type.includes("image")){
                     total_images_url.push(URL.createObjectURL(clipboard_data[i].getAsFile()));
@@ -313,11 +464,13 @@
         })
         //select by input type
         document.getElementById("uf").addEventListener("change",function(event){
-            // console.log(event.srcElement.files.length);
+            if(change){
+                console.log("change to blank");
+                total_images_url=[];
+            }
             for(let i=0;i<event.srcElement.files.length;i++){
                 if(event.srcElement.files[i].type.includes("image")){
                     total_images_url.push(URL.createObjectURL(event.srcElement.files[i]));
-                    console.log(event.srcElement.files[i]);
                 }
             }
             if(total_images_url.length==0){
@@ -325,7 +478,7 @@
                 document.getElementById("part1main").style.background="rgb(240, 40, 40)";
             }
             else{
-                console.log(total_images_url.length);
+                // console.log(total_images_url.length);
                 document.getElementById("error").innerText="";
                 document.getElementById("part1main").style.background="whitesmoke";
                 create_div();
@@ -362,7 +515,12 @@
             for(let i=0;i<total_images_url.length;i++){
                       img_ele=document.createElement('img');
                       img_ele.src=total_images_url[i];
-                      pdf_convertor.addImage(img_ele,(pdf_convertor.internal.pageSize.getWidth()/2)/4,(pdf_convertor.internal.pageSize.getHeight()/2)/4,pdf_convertor.internal.pageSize.getWidth()/1.5,pdf_convertor.internal.pageSize.getHeight()/1.5);
+                      let height=img_ele.height;
+                      let width=img_ele.width;
+                      let ratio=height/width;
+                      width=pdf_convertor.internal.pageSize.width-20;
+                      height=width*ratio;
+                      pdf_convertor.addImage(img_ele,10,10,width,height);
                       if(i==(total_images_url.length-1)){}
                       else{
                         pdf_convertor.addPage();
@@ -371,17 +529,64 @@
             pdf_convertor.save("akshay"+Math.floor(Math.random()*10000)+".pdf");
         }
         function create_div(){
+            
+            elementsinside.innerHTML="";
             let div_is;
+            let cross_part;
             for(let i=0;i<total_images_url.length;i++){
                 div_is=document.createElement('div');
+                cross_part=document.createElement('div');
+                cross_part.setAttribute('class',"cross");
+                cross_part.innerHTML=`<i class="fa-solid fa-xmark fa-shake circle" style="color: #080808;"></i>`;
                 div_is.setAttribute('class',"main_elements");
                 div_is.style.background=`url(${total_images_url[i]})`;
                 div_is.style.backgroundPosition="center";
                 div_is.style.backgroundSize="auto 100%";
                 div_is.style.objectFit="contain";
+                div_is.appendChild(cross_part);
                 elementsinside.appendChild(div_is);
             }
+            cross_array=Array.from(document.getElementsByClassName('circle'));
+            console.log(cross_array.length);
+            cross_array.forEach((cross_single)=>{
+                cross_single.addEventListener("click",function(event){
+                    for(let i=0;i<cross_array.length;i++){
+                        if(cross_array[i]==event.srcElement){
+                            console.log(total_images_url.length);
+                            total_images_url.splice(i,1);
+                            console.log(total_images_url.length);
+                            create_div();
+                        }
+                    }
+                })
+            });
+            div_is=document.createElement('div');
+            div_is.setAttribute('id','addmore');
+            cross_part=document.createElement('div');
+            cross_part.setAttribute('id','more');
+            cross_part.innerHTML=`<i class="fa-solid fa-plus fa-bounce" id="idiff" style="color: #050505;font-family: Agbalumo;"></i>`;
+            div_is.appendChild(cross_part);
+            elementsinside.appendChild(div_is);
+            document.getElementById("more").addEventListener('click',function(event){
+                change=false;
+                document.getElementById('goback').style.display='flex';
+                document.getElementById('display_topic').style.display='none';
+                set_index(part1);
+            });
         }
+        //go back to home page
+        document.getElementById("back_2").addEventListener("click",function(event){
+            change=true;
+            document.getElementById("goback").style.display="none";
+            document.getElementById("display_topic").style.display="flex";
+            set_index(part1);
+        })
+        document.getElementById("back_4").addEventListener("click",function(event){
+            set_index(part2);
+        });
+        document.getElementById("goback").addEventListener('click',function(){
+            set_index(part2);
+        })
         </script>
 </body>
 </html>

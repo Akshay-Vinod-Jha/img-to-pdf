@@ -60,7 +60,7 @@
         }
         #text_dragdrop{
             font-family: Agbalumo;
-            font-size: clamp(0.5rem,3vw,1rem);
+            font-size: clamp(0.5rem,3vw,1.5rem);
             white-space: wrap;
             display: flex;
             justify-content: center;
@@ -402,7 +402,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script>
         var change=true;
-        var pdf_convertor=new jsPDF();
+        var pdf_convertor;
         var total_images_url=[];
         var cross_array;
         var elementsinside=document.getElementById("elements_inside");
@@ -499,28 +499,26 @@
             }
         }
         document.getElementById("button_pdf").addEventListener("click",function(){
-            const p1=new Promise((resolve,reject)=>{
+            let p1=new Promise((resolve,reject)=>{
                 setTimeout(()=>{
                     resolve("1");
                 },1000);
             })
             p1.then(data=>{
                 show_success();
+                console.log("done");
             })
             set_index(part3);
+            console.log("did");
         })
         function show_success(){
+            pdf_convertor=new jsPDF();
             set_index(part4);
-            let img_ele;
+            let img_ele,height,width,ratio;
             for(let i=0;i<total_images_url.length;i++){
                       img_ele=document.createElement('img');
                       img_ele.src=total_images_url[i];
-                      let height=img_ele.height;
-                      let width=img_ele.width;
-                      let ratio=height/width;
-                      width=pdf_convertor.internal.pageSize.width-20;
-                      height=width*ratio;
-                      pdf_convertor.addImage(img_ele,10,10,width,height);
+                      pdf_convertor.addImage(img_ele,10,10,pdf_convertor.internal.pageSize.getWidth()-20,pdf_convertor.internal.pageSize.getHeight()-20);
                       if(i==(total_images_url.length-1)){}
                       else{
                         pdf_convertor.addPage();
@@ -529,7 +527,7 @@
             pdf_convertor.save("akshay"+Math.floor(Math.random()*10000)+".pdf");
         }
         function create_div(){
-            
+            console.log(total_images_url.length);
             elementsinside.innerHTML="";
             let div_is;
             let cross_part;
@@ -547,7 +545,7 @@
                 elementsinside.appendChild(div_is);
             }
             cross_array=Array.from(document.getElementsByClassName('circle'));
-            console.log(cross_array.length);
+            // console.log(cross_array.length);
             cross_array.forEach((cross_single)=>{
                 cross_single.addEventListener("click",function(event){
                     for(let i=0;i<cross_array.length;i++){
@@ -582,9 +580,11 @@
             set_index(part1);
         })
         document.getElementById("back_4").addEventListener("click",function(event){
+            change=false;
             set_index(part2);
         });
         document.getElementById("goback").addEventListener('click',function(){
+            change=true;
             set_index(part2);
         })
         </script>
